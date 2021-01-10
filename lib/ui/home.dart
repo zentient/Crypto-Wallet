@@ -1,3 +1,4 @@
+import 'package:crypto_wallet/net/flutterfire.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -10,9 +11,22 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('Home'),
+    return MaterialApp(
+      home: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              Center(
+                child: RaisedButton(
+                  onPressed: () {
+                    signOutOfAccount();
+                  },
+                  child: Text('SIGN OUT'),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

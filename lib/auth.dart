@@ -1,3 +1,5 @@
+import 'dart:ui';
+import 'package:crypto_wallet/ui/home.dart';
 import 'package:flutter/material.dart';
 import 'package:crypto_wallet/net/flutterfire.dart';
 
@@ -12,6 +14,9 @@ class _AuthState extends State<Auth> {
   // Controllers to capture the input the users enters on the form
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordontroller = TextEditingController();
+
+  // Error Code
+  String err = '';
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +53,13 @@ class _AuthState extends State<Auth> {
                 width: MediaQuery.of(context).size.width / 1.5,
               ),
               Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                child: Text(
+                  '$err',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
+              Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
                   children: [
@@ -57,6 +69,7 @@ class _AuthState extends State<Auth> {
                         primaryColorDark: Color(0xFFeeeef3),
                       ),
                       child: TextFormField(
+                        style: TextStyle(color: Colors.white),
                         controller: _emailController,
                         decoration: InputDecoration(
                           hintText: 'user@email.com',
@@ -75,6 +88,7 @@ class _AuthState extends State<Auth> {
                       ),
                       child: TextFormField(
                         obscureText: true,
+                        style: TextStyle(color: Colors.white),
                         controller: _passwordontroller,
                         decoration: InputDecoration(
                           hintText: '*********',
@@ -102,9 +116,17 @@ class _AuthState extends State<Auth> {
                 ),
                 child: MaterialButton(
                   onPressed: () async {
-                    bool willNavigateHome = await signInEmailAndPass(
+                    String willNavigateHome = await signInEmailAndPass(
                         _emailController.text, _passwordontroller.text);
-                    willNavigateHome ? null : null;
+                    if (willNavigateHome == null) {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Home()));
+                    } else {
+                      print('Error logging in.');
+                      setState(() {
+                        err = willNavigateHome;
+                      });
+                    }
                   },
                   child: Text(
                     'Sign In',
@@ -124,9 +146,12 @@ class _AuthState extends State<Auth> {
                 ),
                 child: MaterialButton(
                   onPressed: () async {
-                    bool willNavigateHome = await registerEmailAndPass(
+                    String willNavigateHome = await registerEmailAndPass(
                         _emailController.text, _passwordontroller.text);
-                    willNavigateHome ? null : null;
+                    willNavigateHome == null
+                        ? Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Home()))
+                        : print('Error logging in.');
                   },
                   child: Text(
                     'Register',
