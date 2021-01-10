@@ -27,7 +27,7 @@ class _AuthState extends State<Auth> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            color: Color(0xFF19181f),
+            color: Color(0xFFfcfdfe),
           ),
           child: Column(
             children: [
@@ -40,7 +40,7 @@ class _AuthState extends State<Auth> {
                       'Welcome',
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                          color: Colors.white,
+                          color: Color(0xFF19181f),
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Inter'),
@@ -66,17 +66,17 @@ class _AuthState extends State<Auth> {
                     Theme(
                       data: new ThemeData(
                         primaryColor: Color(0xFF723ceb),
-                        primaryColorDark: Color(0xFFeeeef3),
+                        primaryColorDark: Color(0xFF19181f),
                       ),
                       child: TextFormField(
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Color(0xFF19181f)),
                         controller: _emailController,
                         decoration: InputDecoration(
                           hintText: 'user@email.com',
                           hintStyle: TextStyle(color: Colors.grey),
                           labelText: 'Email address',
                           labelStyle: TextStyle(
-                            color: Color(0xFFeeeef3),
+                            color: Color(0xFF19181f),
                           ),
                         ),
                       ),
@@ -88,14 +88,14 @@ class _AuthState extends State<Auth> {
                       ),
                       child: TextFormField(
                         obscureText: true,
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Color(0xFF19181f)),
                         controller: _passwordontroller,
                         decoration: InputDecoration(
                           hintText: '*********',
                           hintStyle: TextStyle(color: Colors.grey),
                           labelText: 'Password',
                           labelStyle: TextStyle(
-                            color: Color(0xFFeeeef3),
+                            color: Color(0xFF19181f),
                           ),
                         ),
                       ),
